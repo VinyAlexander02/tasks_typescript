@@ -1,13 +1,23 @@
-import style from './Watch.module.scss'
+import style from "./Watch.module.scss";
 
-export default function Watch() {
+interface Props {
+  time: number | undefined;
+}
+
+export default function Watch({ time = 0 }: Props) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  const [tenMinute, unitMinute] = String(minutes).padStart(2, "0");
+  const [tenSecond, unitSecond] = String(seconds).padStart(2, "0");
+
   return (
     <>
-      <span className={style.watchNumber}>0</span>
-      <span className={style.watchNumber}>0</span>
-      <span className={style.relogioDivisao}>:</span>
-      <span className={style.watchNumber}>0</span>
-      <span className={style.watchNumber}>0</span>
+      <span className={style.watchNumber}>{tenMinute}</span>
+      <span className={style.watchNumber}>{unitMinute}</span>
+      <span className={style.watchDivision}>:</span>
+      <span className={style.watchNumber}>{tenSecond}</span>
+      <span className={style.watchNumber}>{unitSecond}</span>
     </>
   );
 }

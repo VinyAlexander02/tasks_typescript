@@ -19,11 +19,29 @@ function App() {
     );
   }
 
+  function taskFinshed() {
+    setSelected(undefined);
+    if (selected) {
+      setTasks((oldTasks) =>
+        oldTasks.map((task) => {
+          if (task.id === selected.id) {
+            return {
+              ...task,
+              selected: false,
+              completed: true,
+            };
+          }
+          return task;
+        })
+      );
+    }
+  }
+
   return (
     <div className={style.AppStyle}>
       <Forms setTasks={setTasks} />
       <List tasks={tasks} selectTask={selectTask} />
-      <Stopwatch selected={selected} />
+      <Stopwatch selected={selected} taskFinshed={taskFinshed}/>
     </div>
   );
 }

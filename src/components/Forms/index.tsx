@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button";
 import style from "./Forms.module.scss";
 import { ITask } from "../../types/task";
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from "uuid";
 
 class Forms extends React.Component<{
   setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
@@ -14,19 +14,19 @@ class Forms extends React.Component<{
 
   addTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    this.props.setTasks(oldTasks => 
-      [
-      ...oldTasks, 
+    this.props.setTasks((oldTasks) => [
+      ...oldTasks,
       {
         ...this.state,
         selected: false,
         completed: false,
-        id: uuidv4()
-      }])
+        id: uuidv4(),
+      },
+    ]);
     this.setState({
-      task: '',
-      time: '00:00'
-    })
+      task: "",
+      time: "00:00",
+    });
   }
 
   render() {
@@ -62,7 +62,7 @@ class Forms extends React.Component<{
             required
           />
         </div>
-        <Button type="submit" btnName="Adicionar" />
+        <Button type="submit"> Adicionar </Button>
       </form>
     );
   }
